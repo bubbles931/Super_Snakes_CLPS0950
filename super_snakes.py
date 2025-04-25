@@ -2,6 +2,8 @@
 import pygame as pgame
 #define function to create board
 
+board_squares = []
+
 def board():
   #initialize all pygame modules
   pgame.init()
@@ -14,8 +16,6 @@ def board():
 
   running = True
 
-
-
 #main game loop 
   while running:
     #loops through possible user interactions
@@ -23,15 +23,42 @@ def board():
       #if user presses close button exits loop and display closes
       if event.type == pgame.QUIT:
         running = False
-    
+
     #clearing screen
     stage.fill((255, 255, 255))
 
     #creating rectangle and defining position
-    pgame.draw.rect(stage, (100,100,100), pgame.Rect(0,0,50,50))
+   
+   
+    for i in range(rows):
+      for j in range(cols):
+        board_squares.append((i,j))
+        print(board_squares)
+        for row in board_squares:
+          for col in board_squares[row]:
+            board_squares[row][col] = (i*100,j*100)
+
+    
+    Cfor i in range(rows):
+      for j in range(cols):
+          if i % 2 == 0 and j % 2 == 0:
+            #creating grid
+            pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+          elif i % 2 != 0 and j % 2 != 0:
+            pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+          elif i % 2 != 0 and j % 2 == 0:
+            #creating grid
+            pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+          elif i % 2 == 0 and j % 2 != 0:
+            pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
     pgame.display.flip()
+
 
   pgame.quit()
 
 #calling function
 board()
+
+
+
+
