@@ -1,13 +1,20 @@
 #import pygame
 import pygame as pgame
 #define function to create board
+
 def board():
   #initialize all pygame modules
   pgame.init()
   #creates display window with parameters
-  stage = pgame.display.set_mode((1000,400))
+  stage = pgame.display.set_mode((900,900))
+  #define 2-D array 
+  rows = 9
+  cols = 9
+  
 
   running = True
+
+
 
 #main game loop 
   while running:
@@ -21,7 +28,7 @@ def board():
     stage.fill((255, 255, 255))
 
     #creating rectangle and defining position
-    pgame.draw.rect(stage, (150,150, 150), pgame.Rect(150,100,100,150))
+    pgame.draw.rect(stage, (100,100,100), pgame.Rect(0,0,50,50))
     pgame.display.flip()
 
   pgame.quit()
