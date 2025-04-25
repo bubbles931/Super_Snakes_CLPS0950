@@ -37,7 +37,10 @@ def board():
     for i in range(rows):
       square_row = []
       for j in range(cols):
-          if i % 2 == 0 and j % 2 == 0:
+          if i == 0 or i == 8 or j == 0 or j == 8:
+            square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*100,j*100,100,100))
+            square_row.append(square)
+          elif i % 2 == 0 and j % 2 == 0:
             #creating grid
             square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
             square_row.append(square)
@@ -52,9 +55,7 @@ def board():
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
             square_row.append(square)
       board_squares.append(square_row)
-  
-  
-      
+
     pgame.display.flip()
 
 
