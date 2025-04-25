@@ -1,5 +1,6 @@
-#import pygame
+#import pygame & Numpy
 import pygame as pgame
+import numpy as np
 #define function to create board
 
 board_squares = []
@@ -30,27 +31,30 @@ def board():
     #creating rectangle and defining position
    
    
-    for i in range(rows):
-      for j in range(cols):
-        board_squares.append((i,j))
-        print(board_squares)
-        for row in board_squares:
-          for col in board_squares[row]:
-            board_squares[row][col] = (i*100,j*100)
+
 
     
-    Cfor i in range(rows):
+    for i in range(rows):
+      square_row = []
       for j in range(cols):
           if i % 2 == 0 and j % 2 == 0:
             #creating grid
-            pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square_row.append(square)
           elif i % 2 != 0 and j % 2 != 0:
-            pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square_row.append(square)
           elif i % 2 != 0 and j % 2 == 0:
             #creating grid
-            pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square_row.append(square)
           elif i % 2 == 0 and j % 2 != 0:
-            pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square_row.append(square)
+      board_squares.append(square_row)
+  
+  
+      
     pgame.display.flip()
 
 
