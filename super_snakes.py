@@ -2,7 +2,7 @@
 import pygame as pgame
 #define function to create board
 def board():
-  #initialize all pygame functions
+  #initialize all pygame modules
   pgame.init()
   #creates display window with parameters
   stage = pgame.display.set_mode((1000,400))
@@ -25,6 +25,6 @@ def board():
     pgame.display.flip()
 
   pgame.quit()
-  
+
 #calling function
 board()
