@@ -5,8 +5,6 @@ import snake_icon
 #define function to create board
 
 board_squares = []
-movement_cols = 3
-movement_rows = 3
 
 def board():
   #initialize all pygame modules
@@ -16,6 +14,8 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
+  movement_cols = 3
+  movement_rows = 3 
 
 
   running = True
@@ -33,9 +33,9 @@ def board():
         elif event.key == pgame.K_LEFT:
           movement_cols -= 1
         elif event.key == pgame.K_UP:
-          movement_cols += 1 
+          movement_rows -= 1 
         elif event.key == pgame.K_DOWN:
-          movement_rows -= 1
+          movement_rows += 1
 
     #clearing screen
     stage.fill((255, 255, 255))
