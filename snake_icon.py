@@ -11,10 +11,11 @@ def create_snakemovement(movement_rows, movement_cols):
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT:
-                movement_rows += 1
+                movement_cols += 1
             elif event.key == pygame.K_LEFT:
-                movement_rows -= 1
-            elif event.key == pygame.K_UP:
-                movement_cols += 1 
-            elif event.key == pygame.K_DOWN:
                 movement_cols -= 1
+            elif event.key == pygame.K_UP:
+                movement_rows += 1 
+            elif event.key == pygame.K_DOWN:
+                movement_rows -= 1
+    return movement_rows, movement_cols
