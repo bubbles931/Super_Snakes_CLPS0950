@@ -1,3 +1,9 @@
+# next steps:
+# do the continous effect (head of snake continues moving in previous direction clicked instead of just moving 1 x 1)
+# do the trailing effect (create sqaures behind the head of the snake as it moves in each direction)
+# create food + increasing length
+
+
 #import pygame & Numpy
 import pygame as pgame
 import numpy as np
