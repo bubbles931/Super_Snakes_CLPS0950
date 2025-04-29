@@ -49,16 +49,15 @@ def board():
           elif i % 2 == 0 and j % 2 != 0:
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
             board_squares.append(square)
-    print(len(board_squares))
+    #print(len(board_squares))
     np_board_squares = np.array(board_squares)
-    print(len(np_board_squares))
+    #print(len(np_board_squares))
     #board_squares2d = np_board_squares.reshape((20,20))
-    snake_icon.create_snake(stage)
+    snake_icon.create_snake(stage, board_squares[57].center)
     pgame.display.flip()
 
 
   pgame.quit()
-  print(board_squares[1])  
 #calling function
 board()
 

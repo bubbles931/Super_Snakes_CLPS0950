@@ -4,5 +4,5 @@
 #   after this: potientally create a function that can get the snakes location 
 #       to be called in game_logic.py or board.py to NOT populate food in the same boardsquare
 import pygame
-def create_snake(curr_position):
-    head = pygame.draw.circle(curr_position, (255, 255, 0,), (4,4), 5)
+def create_snake(curr_position, center):
+    head = pygame.draw.circle(curr_position, (255, 255, 0,), center, 5)
