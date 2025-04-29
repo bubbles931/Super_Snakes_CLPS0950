@@ -5,6 +5,8 @@ import snake_icon
 #define function to create board
 
 board_squares = []
+movement_cols = 3
+movement_rows = 3
 
 def board():
   #initialize all pygame modules
@@ -14,8 +16,7 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
-  movement_cols = 3
-  movement_rows = 3
+
 
   running = True
 
@@ -53,15 +54,18 @@ def board():
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
-    snake_icon.create_snake(stage, board_squares[movement_cols][movement_rows].center)
-    next_moves = snake_icon.create_snakemovement(movement_rows, movement_cols)
-
     
+    square = board_squares[movement_cols][movement_rows]
+    snake_icon.create_snake(stage, square.center)
     pgame.display.flip()
+    curr_position = snake_icon.create_snakemovement(movement_rows, movement_cols)
+    square = curr_position
+    
 
+  pgame.display.flip()
 
   pgame.quit()
-  print(next_moves)
+  #print(next_moves)
 
 #calling function
 board()
