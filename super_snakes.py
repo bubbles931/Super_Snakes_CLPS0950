@@ -27,6 +27,8 @@ def board():
       #if user presses close button exits loop and display closes
       if event.type == pgame.QUIT:
         running = False
+      else:
+        snake_icon.create_snakemovement(movement_rows,movement_cols)
 
     #clearing screen
     stage.fill((255, 255, 255))
@@ -58,8 +60,6 @@ def board():
     square = board_squares[movement_cols][movement_rows]
     snake_icon.create_snake(stage, square.center)
     pgame.display.flip()
-    curr_position = snake_icon.create_snakemovement(movement_rows, movement_cols)
-    square = curr_position
     
 
   pgame.display.flip()
