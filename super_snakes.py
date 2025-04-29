@@ -1,6 +1,9 @@
 # next steps:
 # do the continous effect (head of snake continues moving in previous direction clicked instead of just moving 1 x 1)
 # do the trailing effect (create sqaures behind the head of the snake as it moves in each direction)
+# storing array for each head position, we will draw a rect with something like:
+  # for each previous position of head with length of snake, draw a rect at these positions
+    # this will continue updating continously as you play and increase length 
 # create food + increasing length
 
 
