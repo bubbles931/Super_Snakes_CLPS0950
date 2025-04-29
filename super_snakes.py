@@ -6,6 +6,7 @@ import snake_icon
 
 board_squares = []
 
+
 def board():
   #initialize all pygame modules
   pgame.init()
@@ -31,29 +32,31 @@ def board():
     #creating rectangle and defining position
     
     for i in range(rows):
+      squares_row= []
       for j in range(cols):
           if i == 0 or i == 19 or j == 0 or j == 19:
             square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*25,j*25,25,25))
-            board_squares.append(square)
+            squares_row.append(square)
           elif i % 2 == 0 and j % 2 == 0:
             #creating grid
             square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
-            board_squares.append(square)
+            squares_row.append(square)
           elif i % 2 != 0 and j % 2 != 0:
             square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
-            board_squares.append(square)
+            squares_row.append(square)
           elif i % 2 != 0 and j % 2 == 0:
             #creating grid
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
-            board_squares.append(square)
+            squares_row.append(square)
           elif i % 2 == 0 and j % 2 != 0:
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
-            board_squares.append(square)
-    #print(len(board_squares))
-    np_board_squares = np.array(board_squares)
+            squares_row.append(square)
+      board_squares.append(squares_row)
+    print(len(board_squares))
+    #np_board_squares = np.array(board_squares)
     #print(len(np_board_squares))
     #board_squares2d = np_board_squares.reshape((20,20))
-    snake_icon.create_snake(stage, board_squares[57].center)
+    snake_icon.create_snake(stage, board_squares[1][1].center)
     pgame.display.flip()
 
 
