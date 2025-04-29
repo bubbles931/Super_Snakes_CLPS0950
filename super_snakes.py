@@ -15,6 +15,8 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
+  movement_cols = 0
+  movement_rows = 0
   
   running = True
 
@@ -52,11 +54,11 @@ def board():
             square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
-    print(len(board_squares))
     #np_board_squares = np.array(board_squares)
     #print(len(np_board_squares))
     #board_squares2d = np_board_squares.reshape((20,20))
-    snake_icon.create_snake(stage, board_squares[1][1].center)
+    snake_icon.create_snake(stage, board_squares[movement_cols][movement_rows].center)
+    snake_icon.create_snakemovement(movement_rows, movement_cols)
     pgame.display.flip()
 
 
