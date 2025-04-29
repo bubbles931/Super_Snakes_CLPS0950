@@ -15,8 +15,8 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
-  movement_cols = 0
-  movement_rows = 0
+  movement_cols = 3
+  movement_rows = 3
   
   running = True
 
