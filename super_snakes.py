@@ -9,10 +9,10 @@ def board():
   #initialize all pygame modules
   pgame.init()
   #creates display window with parameters
-  stage = pgame.display.set_mode((900,900))
+  stage = pgame.display.set_mode((500,500))
   #define 2-D array 
-  rows = 9
-  cols = 9
+  rows = 20
+  cols = 20
   
 
   running = True
@@ -33,22 +33,22 @@ def board():
     for i in range(rows):
       square_row = []
       for j in range(cols):
-          if i == 0 or i == 8 or j == 0 or j == 8:
-            square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*100,j*100,100,100))
+          if i == 0 or i == 19 or j == 0 or j == 19:
+            square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*25,j*25,25,25))
             square_row.append(square)
           elif i % 2 == 0 and j % 2 == 0:
             #creating grid
-            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
             square_row.append(square)
           elif i % 2 != 0 and j % 2 != 0:
-            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
             square_row.append(square)
           elif i % 2 != 0 and j % 2 == 0:
             #creating grid
-            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
             square_row.append(square)
           elif i % 2 == 0 and j % 2 != 0:
-            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*100,j*100,100,100))
+            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
             square_row.append(square)
       board_squares.append(square_row)
 
