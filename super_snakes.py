@@ -7,12 +7,12 @@
 # create food + increasing length
 
 
-#import pygame & Numpy
+#import pygame & Numpy & file code snake_icon
 import pygame as pgame
 import numpy as np
 import snake_icon
-#define function to create board
 
+#define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
 board_squares = []
 
 def board():
@@ -23,8 +23,9 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
-  movement_rows = 18 #y-movement
   movement_cols = 3 #x-movement 
+  movement_rows = 18 #y-movement
+
 
 
   running = True
