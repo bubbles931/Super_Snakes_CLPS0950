@@ -25,8 +25,8 @@ def board():
   cols = 20
   movement_cols = 3 #x-movement 
   movement_rows = 18 #y-movement
-  body_row = 3
-  body_col = 17
+  body_y = 3
+  body_x = 17
 
 
 
@@ -42,16 +42,16 @@ def board():
       if event.type == pgame.KEYDOWN:
         if event.key == pgame.K_RIGHT:
           movement_cols += 1
-          body_col = (square[1] / 25)
+          body_x = (square[1] / 25)
         elif event.key == pgame.K_LEFT:
           movement_cols -= 1
-          body_col = (square[1] / 25)
+          body_x = (square[1] / 25)
         elif event.key == pgame.K_UP:
           movement_rows -= 1 
-          body_row = (square[0] / 25)
+          body_y = (square[0] / 25)
         elif event.key == pgame.K_DOWN:
           movement_rows += 1
-          body_row = (square[0] / 25)
+          body_y = (square[0] / 25)
 
     #clearing screen
     stage.fill((255, 255, 255))
@@ -81,10 +81,11 @@ def board():
       board_squares.append(squares_row)
     
     square = board_squares[movement_rows][movement_cols]
-    snake_icon.create_snake(stage,body_col,body_row, square.center )
+
+    snake_icon.create_snake(stage,body_y,body_x, square.center )
     pgame.display.flip()
     
-
+  print(square[0])
   pgame.display.flip()
 
   pgame.quit()
