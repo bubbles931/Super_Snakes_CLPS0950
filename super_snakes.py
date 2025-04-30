@@ -23,8 +23,8 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
+  movement_rows = 18
   movement_cols = 3
-  movement_rows = 3 
 
 
   running = True
@@ -51,9 +51,9 @@ def board():
 
     #creating rectangle and defining position
     
-    for i in range(rows):
+    for j in range(rows):
       squares_row= []
-      for j in range(cols):
+      for i in range(cols):
           if i == 0 or i == 19 or j == 0 or j == 19:
             square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
@@ -73,8 +73,8 @@ def board():
             squares_row.append(square)
       board_squares.append(squares_row)
     
-    square = board_squares[movement_cols][movement_rows]
-    snake_icon.create_snake(stage, square.center)
+    square = board_squares[movement_rows][movement_cols]
+    snake_icon.create_snake(stage, movement_cols, movement_rows, square.center)
     pgame.display.flip()
     
 

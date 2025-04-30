@@ -6,17 +6,6 @@
 
 import pygame
 
-def create_snake(stage, center):
+def create_snake(stage, movement_rows, movement_cols, center):
     head = pygame.draw.circle(stage, (255, 255, 0,), center, 10)
-
-def create_snakemovement(movement_rows: int, movement_cols: int):
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                movement_cols += 1
-            elif event.key == pygame.K_LEFT:
-                movement_cols -= 1
-            elif event.key == pygame.K_UP:
-                movement_cols += 1 
-            elif event.key == pygame.K_DOWN:
-                movement_rows -= 1
+    body = pygame.draw.rect(stage,(255,0,127), pygame.Rect((movement_rows-1)*25,(movement_cols)*25,25,25))
