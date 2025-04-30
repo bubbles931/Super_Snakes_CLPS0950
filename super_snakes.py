@@ -8,18 +8,19 @@
 
 
 #import pygame & Numpy & file code snake_icon
-import pygame as pgame
+import pygame
 import numpy as np
 import snake_icon
+from snake_icon import body_list
 
 #define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
 board_squares = []
 
 def board():
   #initialize all pygame modules
-  pgame.init()
+  pygame.init()
   #creates display window with parameters
-  stage = pgame.display.set_mode((500,500))
+  stage = pygame.display.set_mode((500,500))
   #define 2-D array 
   rows = 20
   cols = 20
@@ -35,21 +36,21 @@ def board():
 #main game loop 
   while running:
     #loops through possible user interactions
-    for event in pgame.event.get():
+    for event in pygame.event.get():
       #if user presses close button exits loop and display closes
-      if event.type == pgame.QUIT:
+      if event.type == pygame.QUIT:
         running = False
-      if event.type == pgame.KEYDOWN:
-        if event.key == pgame.K_RIGHT:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
           movement_cols += 1
           body_x = (square[1] / 25)
-        elif event.key == pgame.K_LEFT:
+        elif event.key == pygame.K_LEFT:
           movement_cols -= 1
           body_x = (square[1] / 25)
-        elif event.key == pgame.K_UP:
+        elif event.key == pygame.K_UP:
           movement_rows -= 1 
           body_y = (square[0] / 25)
-        elif event.key == pgame.K_DOWN:
+        elif event.key == pygame.K_DOWN:
           movement_rows += 1
           body_y = (square[0] / 25)
 
@@ -62,38 +63,37 @@ def board():
       squares_row= []
       for i in range(cols):
           if i == 0 or i == 19 or j == 0 or j == 19:
-            square = pgame.draw.rect(stage, (83,0,0), pgame.Rect(i*25,j*25,25,25))
+            square = pygame.draw.rect(stage, (83,0,0), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
           elif i % 2 == 0 and j % 2 == 0:
             #creating grid
-            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
+            square = pygame.draw.rect(stage, (100,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
           elif i % 2 != 0 and j % 2 != 0:
-            square = pgame.draw.rect(stage, (100,100,100), pgame.Rect(i*25,j*25,25,25))
+            square = pygame.draw.rect(stage, (100,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
           elif i % 2 != 0 and j % 2 == 0:
             #creating grid
-            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
+            square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
           elif i % 2 == 0 and j % 2 != 0:
-            square = pgame.draw.rect(stage, (0,100,100), pgame.Rect(i*25,j*25,25,25))
+            square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
     
     square = board_squares[movement_rows][movement_cols]
-
-    snake_icon.create_snake(stage,body_y,body_x, square.center )
-    pgame.display.flip()
+    snake_icon.create_snake(stage,body_y,body_x, square.center)
     
-  print(square[0])
-  pgame.display.flip()
+    pygame.display.flip()
+    running = False
 
-  pgame.quit()
+    
+  pygame.display.flip()
+
+  
+  pygame.quit()
+  print(body_list)
   #print(next_moves)
 
 #calling function
 board()
-
-
-
-
