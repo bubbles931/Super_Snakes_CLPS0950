@@ -23,8 +23,8 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
-  movement_rows = 18
-  movement_cols = 3
+  movement_rows = 18 #y-movement
+  movement_cols = 3 #x-movement 
 
 
   running = True
@@ -74,7 +74,7 @@ def board():
       board_squares.append(squares_row)
     
     square = board_squares[movement_rows][movement_cols]
-    snake_icon.create_snake(stage, movement_cols, movement_rows, square.center)
+    snake_icon.create_snake(stage, movement_rows, movement_cols, square.center)
     pgame.display.flip()
     
 
