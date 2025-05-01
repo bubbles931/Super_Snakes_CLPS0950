@@ -11,7 +11,7 @@
 import pygame
 import numpy as np
 import snake_icon
-from snake_icon import body_list
+from snake_icon import body_list, counter
 
 #define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
 board_squares = []
@@ -28,8 +28,6 @@ def board():
   movement_rows = 18 #y-movement
   body_y = 3
   body_x = 17
-
-
 
   running = True
 
@@ -60,23 +58,18 @@ def board():
     #creating rectangle and defining position
     
     for j in range(rows):
-      squares_row= []
+      squares_row = []
       for i in range(cols):
+          #creating the boder
           if i == 0 or i == 19 or j == 0 or j == 19:
             square = pygame.draw.rect(stage, (83,0,0), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
-          elif i % 2 == 0 and j % 2 == 0:
+          elif (i % 2 == 0 and j % 2 == 0) or (i % 2 != 0 and j % 2 != 0):
             #creating grid
             square = pygame.draw.rect(stage, (100,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
-          elif i % 2 != 0 and j % 2 != 0:
-            square = pygame.draw.rect(stage, (100,100,100), pygame.Rect(i*25,j*25,25,25))
-            squares_row.append(square)
-          elif i % 2 != 0 and j % 2 == 0:
+          elif (i % 2 != 0 and j % 2 == 0) or (i % 2 == 0 and j % 2 != 0):
             #creating grid
-            square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
-            squares_row.append(square)
-          elif i % 2 == 0 and j % 2 != 0:
             square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
@@ -85,15 +78,10 @@ def board():
     snake_icon.create_snake(stage,body_y,body_x, square.center)
     
     pygame.display.flip()
-    running = False
-
     
   pygame.display.flip()
 
-  
   pygame.quit()
-  print(body_list)
-  #print(next_moves)
 
 #calling function
 board()
