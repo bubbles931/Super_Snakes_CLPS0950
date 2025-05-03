@@ -30,7 +30,7 @@ def board():
   body_x = 9
   direction = ""  
   running = False
-  image_display = True
+  image_display = True 
   while image_display:
     display_image = pygame.image.load("initial_board_screenshot.png")
     display_image = pygame.transform.scale(display_image, (500,500))
