@@ -29,7 +29,19 @@ def board():
   body_y = 8
   body_x = 9
   direction = ""  
-  running = True
+  running = False
+  image_display = True
+  while image_display:
+    display_image = pygame.image.load("initial_board_screenshot.png")
+    display_image = pygame.transform.scale(display_image, (500,500))
+    for event in pygame.event.get():
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
+            direction = 'R'
+            running = True
+            image_display = False
+    stage.blit(display_image, (0,0))
+    pygame.display.flip()
 
 #main game loop 
   while running:
