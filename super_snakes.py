@@ -67,11 +67,11 @@ def board():
       movement_cols -= 1
       body_x = (square[1] / 25)
     elif direction == 'U':
-      movement_rows += 1
+      movement_rows -= 1
       body_y = (square[0] / 25)
     elif direction == 'D':
       movement_rows += 1
-    body_y = (square[0] / 25)
+      body_y = (square[0] / 25)
 
     
     for event in pygame.event.get():
@@ -87,7 +87,8 @@ def board():
           direction = 'U'
         elif event.key == pygame.K_DOWN and direction != 'U':
           direction = 'D'
-    
+    pygame.display.update()
+    pygame.time.Clock().tick(7)     
     pygame.display.flip()
     
   pygame.display.flip()
