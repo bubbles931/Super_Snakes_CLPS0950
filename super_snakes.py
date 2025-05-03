@@ -81,20 +81,12 @@ def board():
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_RIGHT and direction != 'L':
           direction = 'R'
-          movement_cols += 1
-          body_x = (square[1] / 25)
         elif event.key == pygame.K_LEFT and direction != 'R':
           direction = 'L'
-          movement_cols -= 1
-          body_x = (square[1] / 25)
         elif event.key == pygame.K_UP and direction != 'D':
           direction = 'U'
-          movement_rows -= 1 
-          body_y = (square[0] / 25)
         elif event.key == pygame.K_DOWN and direction != 'U':
           direction = 'D'
-          movement_rows += 1
-          body_y = (square[0] / 25)
     
     pygame.display.flip()
     
