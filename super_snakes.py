@@ -26,7 +26,7 @@ def board():
   cols = 20
   movement_cols = 9 #x-movement 
   movement_rows = 9 #y-movement
-  body_y = 7
+  body_y = 8
   body_x = 9
   direction = ""
 
