@@ -28,8 +28,7 @@ def board():
   movement_rows = 9 #y-movement
   body_y = 8
   body_x = 9
-  direction = ""
-
+  direction = ""  
   running = True
 
 #main game loop 
@@ -68,7 +67,22 @@ def board():
 
     #creating rectangle and defining position
     
-    for j in range(rows):
+    
+    generating_board(stage, rows, cols)
+    square = board_squares[movement_rows][movement_cols]
+    snake_icon.create_snake(stage,body_y,body_x, square.center)
+
+ 
+    pygame.display.update()
+    pygame.time.Clock().tick(7)  
+    pygame.display.flip()
+    
+  pygame.display.flip()
+
+  pygame.quit()
+
+def generating_board(stage, rows, cols):
+  for j in range(rows):
       squares_row = []
       for i in range(cols):
           #creating the boder
@@ -84,18 +98,6 @@ def board():
             square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
-    
-    square = board_squares[movement_rows][movement_cols]
-    snake_icon.create_snake(stage,body_y,body_x, square.center)
-
- 
-    pygame.display.update()
-    pygame.time.Clock().tick(7)     
-    pygame.display.flip()
-    
-  pygame.display.flip()
-
-  pygame.quit()
 
 #calling function
 board()
