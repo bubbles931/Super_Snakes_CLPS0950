@@ -31,6 +31,7 @@ def board():
   direction = ""  
   running = False
   image_display = True 
+
   while image_display:
     display_image = pygame.image.load("initial_board_screenshot.png")
     display_image = pygame.transform.scale(display_image, (500,500))
@@ -64,6 +65,7 @@ def board():
         elif event.key == pygame.K_DOWN and direction != 'U':
           direction = 'D'
           body_y = (square[0] / 25)
+
     #using the current assignment of direction to update position of the head and body    
     if direction == 'R':
       movement_cols += 1
@@ -88,7 +90,6 @@ def board():
     square = board_squares[movement_rows][movement_cols]
     snake_icon.create_snake(stage,body_y,body_x, square.center)
 
- 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
     pygame.display.flip()
