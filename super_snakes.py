@@ -24,41 +24,17 @@ def board():
   #define 2-D array 
   rows = 20
   cols = 20
-  movement_cols = 3 #x-movement 
-  movement_rows = 18 #y-movement
-  body_y = 3
-  body_x = 17
-  direction = "R"
+  movement_cols = 9 #x-movement 
+  movement_rows = 9 #y-movement
+  body_y = 7
+  body_x = 9
+  direction = ""
 
   running = True
 
 #main game loop 
   while running:
     #loops through possible user interactions
-    for event in pygame.event.get():
-      #if user presses close button exits loop and display closes
-      if event.type == pygame.QUIT:
-        running = False
-      if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_RIGHT and direction != 'L':
-          direction = 'R'
-          movement_cols += 1
-          body_x = (square[1] / 25)
-        elif event.key == pygame.K_LEFT and direction != 'R':
-          direction = 'L'
-          movement_cols -= 1
-          body_x = (square[1] / 25)
-        elif event.key == pygame.K_UP and direction != 'D':
-          direction = 'U'
-          movement_rows -= 1 
-          body_y = (square[0] / 25)
-        elif event.key == pygame.K_DOWN and direction != 'U':
-          direction = 'D'
-          movement_rows += 1
-          body_y = (square[0] / 25)
-          
-
-    
     
     #clearing screen
     stage.fill((255, 255, 255))
@@ -84,6 +60,41 @@ def board():
     
     square = board_squares[movement_rows][movement_cols]
     snake_icon.create_snake(stage,body_y,body_x, square.center)
+    if direction == 'R':
+      movement_cols += 1
+      body_x = (square[1] / 25)
+    elif direction == 'L':
+      movement_cols -= 1
+      body_x = (square[1] / 25)
+    elif direction == 'U':
+      movement_rows += 1
+      body_y = (square[0] / 25)
+    elif direction == 'D':
+      movement_rows += 1
+    body_y = (square[0] / 25)
+
+    
+    for event in pygame.event.get():
+      #if user presses close button exits loop and display closes
+      if event.type == pygame.QUIT:
+        running = False
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT and direction != 'L':
+          direction = 'R'
+          movement_cols += 1
+          body_x = (square[1] / 25)
+        elif event.key == pygame.K_LEFT and direction != 'R':
+          direction = 'L'
+          movement_cols -= 1
+          body_x = (square[1] / 25)
+        elif event.key == pygame.K_UP and direction != 'D':
+          direction = 'U'
+          movement_rows -= 1 
+          body_y = (square[0] / 25)
+        elif event.key == pygame.K_DOWN and direction != 'U':
+          direction = 'D'
+          movement_rows += 1
+          body_y = (square[0] / 25)
     
     pygame.display.flip()
     
