@@ -16,9 +16,13 @@ def generate_food(stage):
     display_image = pygame.image.load("snake_food.png")
     display_image = pygame.transform.scale(display_image, (25, 25))
     if not food_list:
-        square = board_squares[random.randint(1, 18)][random.randint(1, 18)]
-        if square not in food_list:
-            food_list.append(square)
+        #keep running until an open boardsquare is found
+        while running:
+            square = board_squares[random.randint(1, 18)][random.randint(1, 18)]
+            if square not in snake_icon.body_list:
+                food_list.append(square)
+                break
+
     for square in food_list:
         stage.blit(display_image, square.topleft)
 
