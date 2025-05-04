@@ -11,10 +11,7 @@
 import pygame
 import numpy as np
 import snake_icon
-from snake_icon import body_list, counter
-
-#define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
-board_squares = []
+import food
 
 def board():
   #initialize all pygame modules
@@ -41,8 +38,14 @@ def board():
             direction = 'R'
             running = True
             image_display = False
+
+    #showing image      
     stage.blit(display_image, (0,0))
     pygame.display.flip()
+
+  #updating stage to display board squares and placing snake in assigned start position 
+  board_squares = generating_board(stage, rows, cols)
+  snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
 
 #main game loop 
   while running:
@@ -80,25 +83,33 @@ def board():
       movement_rows += 1
       body_x += 1
     
-    #clearing screen
-    stage.fill((255, 255, 255))
-
-    #creating rectangle and defining position
-    
-    
-    generating_board(stage, rows, cols)
+    #updating body_list to draw the snakes head in board_square
     square = board_squares[movement_rows][movement_cols]
-    snake_icon.create_snake(stage,body_y,body_x, square.center)
+    snake_icon.body_list.insert(0, square)
+    if len(snake_icon.body_list) > snake_icon.body_counter:
+      snake_icon.body_list.pop()
+
+    #drawing everything in these couple lines
+    stage.fill((255, 255, 255))
+    board_squares = generating_board(stage, rows, cols)
+    snake_icon.create_snake(stage)
+    food.board_squares = board_squares
+    food.generate_food(stage)
+
+    #checking if food and snake has collided
+    food.check_collison(stage)
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
     pygame.display.flip()
-    
+
   pygame.display.flip()
 
   pygame.quit()
 
 def generating_board(stage, rows, cols):
+  #define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
+  board_squares = []
   for j in range(rows):
       squares_row = []
       for i in range(cols):
@@ -115,6 +126,7 @@ def generating_board(stage, rows, cols):
             square = pygame.draw.rect(stage, (0,100,100), pygame.Rect(i*25,j*25,25,25))
             squares_row.append(square)
       board_squares.append(squares_row)
+  return board_squares
 
 #calling function
 board()

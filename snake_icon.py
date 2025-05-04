@@ -5,16 +5,15 @@
 #       to be called in game_logic.py or board.py to NOT populate food in the same boardsquare
 
 import pygame
-counter = 1
+body_counter = 3
 body_list = []
 
-def create_snake(stage, body_y, body_x, center):
-    head = pygame.draw.circle(stage, (255, 255, 0,), center, 10)
-    body_list.append(head)
-    if counter != 0:
-        if counter % 2 == 0:
-            body = pygame.draw.rect(stage,(255,170,29), pygame.Rect((body_y)*25,(body_x)*25,25,25))
-            body_list.append(body)
+def create_snake(stage):
+    head = body_list[0]
+    pygame.draw.circle(stage, (255, 255, 0,), head.center, 10)
+    for i in range(1,len(body_list)):
+        body = body_list[i]
+        if i % 2 == 0:
+            pygame.draw.rect(stage,(255,170,29), body)
         else:
-            body = pygame.draw.rect(stage,(255,0,127), pygame.Rect((body_y)*25,(body_x)*25,25,25))
-            body_list.append(body)
+            pygame.draw.rect(stage,(255,0,127), body)
