@@ -1,15 +1,5 @@
-# next steps:
-# do the continous effect (head of snake continues moving in previous direction clicked instead of just moving 1 x 1)
-# do the trailing effect (create sqaures behind the head of the snake as it moves in each direction)
-# storing array for each head position, we will draw a rect with something like:
-  # for each previous position of head with length of snake, draw a rect at these positions
-    # this will continue updating continously as you play and increase length 
-# create food + increasing length
-
-
-#import pygame & Numpy & file code snake_icon
+#import pygame & file code snake_icon
 import pygame
-import numpy as np
 import snake_icon
 import food
 
@@ -93,6 +83,11 @@ def board():
     stage.fill((255, 255, 255))
     board_squares = generating_board(stage, rows, cols)
     snake_icon.create_snake(stage)
+
+    #death barrier
+    if movement_cols == 0 or movement_cols == 19 or movement_rows == 0 or movement_rows == 19:
+      running = False
+
     food.board_squares = board_squares
     food.generate_food(stage)
 
