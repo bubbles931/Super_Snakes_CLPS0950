@@ -8,6 +8,7 @@ def board():
   pygame.init()
   #creates display window with parameters
   stage = pygame.display.set_mode((500,500))
+  pygame.display.set_caption("Super Snakes")
   #define 2-D array 
   rows = 20
   cols = 20
