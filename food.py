@@ -5,6 +5,7 @@ import snake_icon
 board_squares = None
 food_list = []
 running = True
+food_ate = 0
 
 #loading, displaying, and adding food to random board squares
 def generate_food(stage):
@@ -17,12 +18,13 @@ def generate_food(stage):
             if square not in snake_icon.body_list:
                 food_list.append(square)
                 break
-
     for square in food_list:
         stage.blit(display_image, square.topleft)
 
 #checking if head of the snake collides with food 
-def check_collison(stage):
+#returning a boolean to use in super_snakes to increase food_ate count to display to user
+def check_collison(stage) -> bool:
+    bool = False
     head_location = snake_icon.body_list[0]
     for i in range(0, len(food_list)):
         food_location = food_list[i]
@@ -30,4 +32,6 @@ def check_collison(stage):
             snake_icon.body_counter += 1
             food_list.pop(i)
             generate_food(stage)
+            bool = True
             break
+    return bool

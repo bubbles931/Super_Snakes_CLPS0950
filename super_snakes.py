@@ -29,9 +29,14 @@ def board():
             direction = 'R'
             running = True
             image_display = False
+    font = pygame.font.SysFont('Times New Roman', 30)
+    level_txt_surface = font.render("Level 1", False, (255, 255, 255))
+    instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
 
     #showing image      
     stage.blit(display_image, (0,0))
+    stage.blit(level_txt_surface, (190,100))
+    stage.blit(instruction_txt_surface, (75,150))
     pygame.display.flip()
 
   #updating stage to display board squares and placing snake in assigned start position 
@@ -93,7 +98,12 @@ def board():
     food.generate_food(stage)
 
     #checking if food and snake has collided
-    food.check_collison(stage)
+    bool = food.check_collison(stage)
+    if bool:
+      food.food_ate +=1
+    font = pygame.font.SysFont('Times New Roman', 15)
+    txt_surface = font.render("Ate:" + str(food.food_ate), False, (255, 255, 255))
+    stage.blit(txt_surface, (75,0))
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
