@@ -134,5 +134,6 @@ def generating_board(stage, rows, cols):
       board_squares.append(squares_row)
   return board_squares
 
+
 #calling function
 board()
