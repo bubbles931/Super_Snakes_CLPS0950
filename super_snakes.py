@@ -4,8 +4,8 @@ import snake_icon
 import food
 import level_2
 
-level2 = False
-level_2.level_2(level2)
+
+
 def board():
   #initialize all pygame modules
   pygame.init()
@@ -111,9 +111,8 @@ def board():
     
    
     if food.food_ate == 5:
-      level2 = True
-
-    #level_2.level_2(level2)
+      level_2.level2 = True
+      level_2.level_2()
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
