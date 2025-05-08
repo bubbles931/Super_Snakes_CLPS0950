@@ -4,8 +4,6 @@ import snake_icon
 import food
 import level_2
 
-
-
 def board():
   #initialize all pygame modules
   pygame.init()
@@ -22,7 +20,7 @@ def board():
   direction = ""  
   running = False
   image_display = True 
-
+  curr_level = "Level 1"
 
   while image_display:
     display_image = pygame.image.load("initial_board_screenshot.png")
@@ -34,7 +32,7 @@ def board():
             running = True
             image_display = False
     font = pygame.font.SysFont('Times New Roman', 30)
-    level_txt_surface = font.render("Level 1", False, (255, 255, 255))
+    level_txt_surface = font.render(curr_level, False, (255, 255, 255))
     instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
 
     #showing image      
@@ -47,13 +45,11 @@ def board():
   board_squares = generating_board(stage, rows, cols)
   snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
 
-#main game loop 
+#main game loop:
   while running:
     #loops through possible user interactions
     for event in pygame.event.get():
       #if user presses close button exits loop and display closes
-      if event.type == pygame.QUIT:
-        running = False
       #handling key pressing and assigning direction
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_RIGHT and direction != 'L':
@@ -96,7 +92,7 @@ def board():
 
     #death barrier
     if movement_cols == 0 or movement_cols == 19 or movement_rows == 0 or movement_rows == 19:
-      running = False
+      break
 
     food.board_squares = board_squares
     food.generate_food(stage)
@@ -106,21 +102,26 @@ def board():
     if bool:
       food.food_ate +=1
     font = pygame.font.SysFont('Times New Roman', 15)
-    txt_surface = font.render("Ate:" + str(food.food_ate), False, (255, 255, 255))
+    txt_surface = font.render("Ate:" + str(food.food_ate) + "/5", False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
     
-   
-    if food.food_ate == 5:
-      level_2.level2 = True
-      level_2.level_2()
+    if food.food_ate == 1:
+      curr_level = "Level 2"
+      stage.fill((255, 255, 255))
+      image_display = True
+      pygame.display.update()
+      pygame.display.flip()
+      
+
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
     pygame.display.flip()
-
+  
   pygame.display.flip()
 
-  pygame.quit()
+
+  #pygame.quit()
 
 def generating_board(stage, rows, cols):
   #define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement

@@ -1,7 +1,7 @@
 #this is the file for level 2
-level2 = False
+start_level_2 = False
 
 def level_2():
-    if level2 == True:
+    if start_level_2 == True:
         print('your mama')
 
