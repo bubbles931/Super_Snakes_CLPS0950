@@ -113,6 +113,9 @@ def board():
       image_display = True
       movement_rows = 9
       movement_cols = 9
+      body_y = 8
+      body_x = 9
+      direction = ""  
 
 
       
