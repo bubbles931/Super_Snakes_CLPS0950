@@ -20,9 +20,10 @@ def board():
   direction = ""  
   running = True
   image_display = True 
+  desired_amount = 10
   
   curr_level = "Level 1"
-  instructions = "Eat 5 food to level up!"
+  instructions = "Eat " + str(desired_amount) + " food to level up!"
 
 #main game loop:
   while running:
@@ -31,7 +32,7 @@ def board():
       display_image = pygame.transform.scale(display_image, (500,500))
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
-          running = False
+          pygame.quit()
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
               direction = 'R'
@@ -47,16 +48,14 @@ def board():
       stage.blit(instruction_txt_surface, (75,150))
       stage.blit(instruction_txt_surface_levels, (65,300))
       pygame.display.flip()
+      
       #updating stage to display board squares and placing snake in assigned start position 
       board_squares = generating_board(stage, rows, cols)
       snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
-    #loops through possible user interactions
-    events = pygame.event.get()
-    for event in events:
-      #if user presses close button exits loop and display closes
-      #handling key pressing and assigning direction
+
+    for event in pygame.event.get():
       if event.type == pygame.QUIT:
-        pygame.quit()
+        pygame.quit() #if user presses close button exits loop and display closes
       direction, body_x, body_y = snake_icon.user_input(event, square, direction, body_x, body_y)
 
     #using the current assignment of direction to update position of the head and body    
@@ -85,10 +84,10 @@ def board():
     if bool:
       food.food_ate +=1
     font = pygame.font.SysFont('Times New Roman', 15)
-    txt_surface = font.render("Ate:" + str(food.food_ate) + "/5", False, (255, 255, 255))
+    txt_surface = font.render("Ate: " + str(food.food_ate) + "/" + str(desired_amount), False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
     
-    if food.food_ate == 1 and curr_level == "Level 1":
+    if food.food_ate == desired_amount and curr_level == "Level 1":
       curr_level = "Level 2"
       food.food_ate = 0
       image_display = True
@@ -98,12 +97,13 @@ def board():
       body_x = 9
       direction = ""  
       instructions = "Avoid the obstacles and your tail!"
+      desired_amount = 20
     
     if curr_level == "Level 2":
       if image_display == False: 
         level_2.generate_obstacles(stage, board_squares)
-        level_2.obstacle_collison(stage)
-        level_2.hit_body(stage)
+        level_2.obstacle_collison()
+        level_2.hit_body()
       
     pygame.display.update()
     pygame.time.Clock().tick(7)  

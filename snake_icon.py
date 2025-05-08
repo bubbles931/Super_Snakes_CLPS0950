@@ -30,7 +30,7 @@ def user_input(event, square, direction, body_x, body_y):
             body_y = (square[0] / 25)
     return direction, body_x, body_y
 
-    #using the current assignment of direction to update position of the head and body    
+#using the current assignment of direction to update position of the head and body    
 def update_snake_position(direction, movement_rows, movement_cols, body_x, body_y):
     if direction == 'R':
         return movement_rows, movement_cols + 1, body_x, body_y + 1

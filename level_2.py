@@ -27,12 +27,12 @@ def generate_obstacles(stage,board_squares):
     for square in obstacle_list:
         stage.blit(display_image, square.topleft)
 
-def obstacle_collison(stage):
+def obstacle_collison():
     head_location = snake_icon.body_list[0]
     if head_location in obstacle_list:
         pygame.quit()
 
-def hit_body(stage):
+def hit_body():
     head_location = snake_icon.body_list[0]
     snake_icon.body_list
     if snake_icon.body_list.count(head_location) > 1:
