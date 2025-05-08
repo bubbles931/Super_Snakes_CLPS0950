@@ -113,6 +113,7 @@ def board():
     if food.food_ate == 5:
       level_2.level2 = True
       level_2.level_2()
+      break
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
