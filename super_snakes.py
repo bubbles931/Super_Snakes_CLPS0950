@@ -118,7 +118,9 @@ def board():
       direction = ""  
     
     if curr_level == "Level 2":
-      level_2.level_2()
+      level_2.level_2(stage, board_squares)
+      level_2.obstacle_collison(stage)
+      level_2.hit_body(stage)
 
 
 

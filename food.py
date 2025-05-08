@@ -1,6 +1,7 @@
 import pygame
 import random
 import snake_icon
+import level_2
 
 board_squares = None
 food_list = []
@@ -15,7 +16,7 @@ def generate_food(stage):
         #keep running until an open boardsquare is found
         while running:
             square = board_squares[random.randint(1, 18)][random.randint(1, 18)]
-            if square not in snake_icon.body_list:
+            if square not in snake_icon.body_list and square not in level_2.obstacle_list:
                 food_list.append(square)
                 break
     for square in food_list:
