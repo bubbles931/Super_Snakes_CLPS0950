@@ -112,8 +112,6 @@ def board():
       pygame.display.update()
       pygame.display.flip()
       
-
-
     pygame.display.update()
     pygame.time.Clock().tick(7)  
     pygame.display.flip()
