@@ -29,6 +29,8 @@ def board():
       display_image = pygame.image.load("initial_board_screenshot.png")
       display_image = pygame.transform.scale(display_image, (500,500))
       for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+          pygame.quit()
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
               direction = 'R'
@@ -42,13 +44,15 @@ def board():
       stage.blit(level_txt_surface, (190,100))
       stage.blit(instruction_txt_surface, (75,150))
       pygame.display.flip()
-    #updating stage to display board squares and placing snake in assigned start position 
-    board_squares = generating_board(stage, rows, cols)
-    snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
+      #updating stage to display board squares and placing snake in assigned start position 
+      board_squares = generating_board(stage, rows, cols)
+      snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
     #loops through possible user interactions
     for event in pygame.event.get():
       #if user presses close button exits loop and display closes
       #handling key pressing and assigning direction
+      if event.type == pygame.QUIT:
+        pygame.quit()
       if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_RIGHT and direction != 'L':
           direction = 'R'
@@ -105,7 +109,11 @@ def board():
     
     if food.food_ate == 1 and curr_level == "Level 1":
       curr_level = "Level 2"
+      food.food_ate = 0
       image_display = True
+      movement_rows = 9
+      movement_cols = 9
+
 
       
     pygame.display.update()
