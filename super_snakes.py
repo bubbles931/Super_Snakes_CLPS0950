@@ -21,9 +21,9 @@ def board():
   running = True
   image_display = True 
   desired_amount = 10
-  
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
+  x = 100
 
 #main game loop:
   while running:
@@ -46,9 +46,9 @@ def board():
       stage.blit(display_image, (0,0))
       stage.blit(level_txt_surface, (190,100))
       stage.blit(instruction_txt_surface, (75,150))
-      stage.blit(instruction_txt_surface_levels, (65,300))
+      stage.blit(instruction_txt_surface_levels, (x,300))
       pygame.display.flip()
-      
+
       #updating stage to display board squares and placing snake in assigned start position 
       board_squares = generating_board(stage, rows, cols)
       snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
@@ -97,6 +97,7 @@ def board():
       body_x = 9
       direction = ""  
       instructions = "Avoid the obstacles and your tail!"
+      x = 50
       desired_amount = 20
     
     if curr_level == "Level 2":
@@ -104,6 +105,22 @@ def board():
         level_2.generate_obstacles(stage, board_squares)
         level_2.obstacle_collison()
         level_2.hit_body()
+
+    if food.food_ate == desired_amount and curr_level == "Level 2":
+      curr_level = "Level 3"
+      food.food_ate = 0
+      image_display = True
+      movement_rows = 9
+      movement_cols = 9
+      body_y = 8
+      body_x = 9
+      direction = ""  
+      instructions = "" #add instructions for level 3
+      desired_amount = __ #add the amount you want
+
+    #text that appears when player has won all the levels
+    if food.food_ate == desired_amount and curr_level == "Level 3":
+      print("THEE ENDDDDDD")
       
     pygame.display.update()
     pygame.time.Clock().tick(7)  
