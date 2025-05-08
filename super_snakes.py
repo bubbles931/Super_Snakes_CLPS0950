@@ -2,6 +2,9 @@
 import pygame
 import snake_icon
 import food
+import level_2
+
+level2 = False
 
 def board():
   #initialize all pygame modules
@@ -19,6 +22,7 @@ def board():
   direction = ""  
   running = False
   image_display = True 
+
 
   while image_display:
     display_image = pygame.image.load("initial_board_screenshot.png")
@@ -104,6 +108,11 @@ def board():
     font = pygame.font.SysFont('Times New Roman', 15)
     txt_surface = font.render("Ate:" + str(food.food_ate), False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
+
+    if food.food_ate == 5:
+      level2 = True
+
+    level_2.level_2(level2)
 
     pygame.display.update()
     pygame.time.Clock().tick(7)  
