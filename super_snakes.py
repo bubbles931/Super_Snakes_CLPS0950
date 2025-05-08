@@ -22,6 +22,7 @@ def board():
   image_display = True 
   
   curr_level = "Level 1"
+  instructions = "Eat 5 food to level up!"
 
 #main game loop:
   while running:
@@ -38,11 +39,13 @@ def board():
       font = pygame.font.SysFont('Times New Roman', 30)
       level_txt_surface = font.render(curr_level, False, (255, 255, 255))
       instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
+      instruction_txt_surface_levels = font.render(instructions, False, (255, 255, 255))
 
     #showing image      
       stage.blit(display_image, (0,0))
       stage.blit(level_txt_surface, (190,100))
       stage.blit(instruction_txt_surface, (75,150))
+      stage.blit(instruction_txt_surface_levels, (65,300))
       pygame.display.flip()
       #updating stage to display board squares and placing snake in assigned start position 
       board_squares = generating_board(stage, rows, cols)
@@ -116,6 +119,7 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
+      instructions = "Avoid the obstacles and your tail!"
     
     if curr_level == "Level 2":
       level_2.level_2(stage, board_squares)
