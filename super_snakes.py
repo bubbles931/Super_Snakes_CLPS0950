@@ -30,13 +30,13 @@ def board():
       display_image = pygame.transform.scale(display_image, (500,500))
       for event in pygame.event.get():
         if event.type == pygame.QUIT:
-          pygame.quit()
+          running = False
         if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
               direction = 'R'
               image_display = False
       font = pygame.font.SysFont('Times New Roman', 30)
-      level_txt_surface = font.render(curr_level, False, (255, 255, 255))
+      level_txt_surface = font.render(curr_level, True, (255, 255, 255))
       instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
 
     #showing image      
@@ -118,12 +118,10 @@ def board():
       direction = ""  
     
     if curr_level == "Level 2":
-      level_2.level_2(stage, board_squares)
-      level_2.obstacle_collison(stage)
-      level_2.hit_body(stage)
-
-
-
+      if image_display == False: 
+        level_2.generate_obstacles(stage, board_squares)
+        level_2.obstacle_collison(stage)
+        level_2.hit_body(stage)
       
     pygame.display.update()
     pygame.time.Clock().tick(7)  

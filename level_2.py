@@ -4,7 +4,6 @@ import random
 import snake_icon
 import food
 
-start_level_2 = False
 
 def main(stage):
     stage.fill(100,100,100)
@@ -14,7 +13,7 @@ obstacle_list = []
 running = True
 
 
-def level_2(stage,board_squares):
+def generate_obstacles(stage,board_squares):
     display_image = pygame.image.load("obstacle_try2.webp")
     display_image = pygame.transform.scale(display_image, (25, 25))
     if not obstacle_list:
