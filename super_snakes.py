@@ -43,8 +43,8 @@ def board():
       stage.blit(instruction_txt_surface, (75,150))
       pygame.display.flip()
     #updating stage to display board squares and placing snake in assigned start position 
-    board_squares = generating_board(stage, rows, cols)
-    snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
+      board_squares = generating_board(stage, rows, cols)
+      snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
     #loops through possible user interactions
     for event in pygame.event.get():
       #if user presses close button exits loop and display closes
@@ -105,6 +105,7 @@ def board():
     
     if food.food_ate == 1 and curr_level == "Level 1":
       curr_level = "Level 2"
+      food.food_ate == 0
       image_display = True
 
       
