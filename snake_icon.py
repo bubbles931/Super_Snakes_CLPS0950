@@ -12,29 +12,28 @@ def create_snake(stage):
         else:
             pygame.draw.rect(stage,(255,0,127), body)
 
-def user_input(events, square, direction, body_x, body_y):
-    for event in events:
-      #if user presses close button exits loop and display closes
-      #handling key pressing and assigning direction
-      if event.type == pygame.KEYDOWN:
+def user_input(event, square, direction, body_x, body_y):
+    #if user presses close button exits loop and display closes
+    #handling key pressing and assigning direction
+    if event.type == pygame.KEYDOWN:
         if event.key == pygame.K_RIGHT and direction != 'L':
-          direction = 'R'
-          body_x = (square[1] / 25)
+            direction = 'R'
+            body_x = (square[1] / 25)
         elif event.key == pygame.K_LEFT and direction != 'R':
-          direction = 'L'
-          body_x = (square[1] / 25)
+            direction = 'L'
+            body_x = (square[1] / 25)
         elif event.key == pygame.K_UP and direction != 'D':
-          direction = 'U'
-          body_y = (square[0] / 25)
+            direction = 'U'
+            body_y = (square[0] / 25)
         elif event.key == pygame.K_DOWN and direction != 'U':
-          direction = 'D'
-          body_y = (square[0] / 25)
+            direction = 'D'
+            body_y = (square[0] / 25)
     return direction, body_x, body_y
 
     #using the current assignment of direction to update position of the head and body    
 def update_snake_position(direction, movement_rows, movement_cols, body_x, body_y):
     if direction == 'R':
-        return movement_rows, movement_cols + 1, body_x, body_y+ 1
+        return movement_rows, movement_cols + 1, body_x, body_y + 1
     elif direction == 'L':
         return movement_rows, movement_cols - 1, body_x, body_y - 1
     elif direction == 'U':

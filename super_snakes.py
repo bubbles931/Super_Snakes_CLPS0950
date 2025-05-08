@@ -51,38 +51,16 @@ def board():
       board_squares = generating_board(stage, rows, cols)
       snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
     #loops through possible user interactions
-    for event in pygame.event.get():
+    events = pygame.event.get()
+    for event in events:
       #if user presses close button exits loop and display closes
       #handling key pressing and assigning direction
       if event.type == pygame.QUIT:
         pygame.quit()
-      if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_RIGHT and direction != 'L':
-          direction = 'R'
-          body_x = (square[1] / 25)
-        elif event.key == pygame.K_LEFT and direction != 'R':
-          direction = 'L'
-          body_x = (square[1] / 25)
-        elif event.key == pygame.K_UP and direction != 'D':
-          direction = 'U'
-          body_y = (square[0] / 25)
-        elif event.key == pygame.K_DOWN and direction != 'U':
-          direction = 'D'
-          body_y = (square[0] / 25)
+      direction, body_x, body_y = snake_icon.user_input(event, square, direction, body_x, body_y)
 
     #using the current assignment of direction to update position of the head and body    
-    if direction == 'R':
-      movement_cols += 1
-      body_y += 1
-    elif direction == 'L':
-      movement_cols -= 1
-      body_y -= 1
-    elif direction == 'U':
-      movement_rows -= 1
-      body_x -= 1
-    elif direction == 'D':
-      movement_rows += 1
-      body_x += 1
+    movement_rows, movement_cols, body_x, body_y = snake_icon.update_snake_position(direction, movement_rows, movement_cols, body_x, body_y)
     
     #updating body_list to draw the snakes head in board_square
     square = board_squares[movement_rows][movement_cols]
@@ -132,9 +110,7 @@ def board():
     pygame.display.flip()
   
   pygame.display.flip()
-
-
-  #pygame.quit()
+  pygame.quit()
 
 def generating_board(stage, rows, cols):
   #define function to create board and empty array board_squares to store position of each rectangle grid and to reference movement
