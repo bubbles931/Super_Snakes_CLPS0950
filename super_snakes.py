@@ -116,6 +116,10 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
+    
+    if curr_level == "Level 2":
+      level_2.level_2()
+
 
 
       
