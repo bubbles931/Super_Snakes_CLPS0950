@@ -29,18 +29,16 @@ def user_input(events, square, direction, body_x, body_y):
         elif event.key == pygame.K_DOWN and direction != 'U':
           direction = 'D'
           body_y = (square[0] / 25)
+    return direction, body_x, body_y
 
     #using the current assignment of direction to update position of the head and body    
+def update_snake_position(direction, movement_rows, movement_cols, body_x, body_y):
     if direction == 'R':
-      movement_cols += 1
-      body_y += 1
+        return movement_rows, movement_cols + 1, body_x, body_y+ 1
     elif direction == 'L':
-      movement_cols -= 1
-      body_y -= 1
+        return movement_rows, movement_cols - 1, body_x, body_y - 1
     elif direction == 'U':
-      movement_rows -= 1
-      body_x -= 1
+        return movement_rows - 1, movement_cols, body_x - 1, body_y
     elif direction == 'D':
-      movement_rows += 1
-      body_x += 1
-    
+        return movement_rows + 1, movement_cols, body_x + 1, body_y
+        

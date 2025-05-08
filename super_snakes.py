@@ -18,35 +18,33 @@ def board():
   body_y = 8
   body_x = 9
   direction = ""  
-  running = False
+  running = True
   image_display = True 
+  
   curr_level = "Level 1"
-
-  while image_display:
-    display_image = pygame.image.load("initial_board_screenshot.png")
-    display_image = pygame.transform.scale(display_image, (500,500))
-    for event in pygame.event.get():
-      if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
-            direction = 'R'
-            running = True
-            image_display = False
-    font = pygame.font.SysFont('Times New Roman', 30)
-    level_txt_surface = font.render(curr_level, False, (255, 255, 255))
-    instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
-
-    #showing image      
-    stage.blit(display_image, (0,0))
-    stage.blit(level_txt_surface, (190,100))
-    stage.blit(instruction_txt_surface, (75,150))
-    pygame.display.flip()
-
-  #updating stage to display board squares and placing snake in assigned start position 
-  board_squares = generating_board(stage, rows, cols)
-  snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
 
 #main game loop:
   while running:
+    while image_display:
+      display_image = pygame.image.load("initial_board_screenshot.png")
+      display_image = pygame.transform.scale(display_image, (500,500))
+      for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
+              direction = 'R'
+              image_display = False
+      font = pygame.font.SysFont('Times New Roman', 30)
+      level_txt_surface = font.render(curr_level, False, (255, 255, 255))
+      instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
+
+    #showing image      
+      stage.blit(display_image, (0,0))
+      stage.blit(level_txt_surface, (190,100))
+      stage.blit(instruction_txt_surface, (75,150))
+      pygame.display.flip()
+    #updating stage to display board squares and placing snake in assigned start position 
+    board_squares = generating_board(stage, rows, cols)
+    snake_icon.body_list[:] = [board_squares[movement_rows][movement_cols]]
     #loops through possible user interactions
     for event in pygame.event.get():
       #if user presses close button exits loop and display closes
@@ -105,12 +103,10 @@ def board():
     txt_surface = font.render("Ate:" + str(food.food_ate) + "/5", False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
     
-    if food.food_ate == 1:
+    if food.food_ate == 1 and curr_level == "Level 1":
       curr_level = "Level 2"
-      stage.fill((255, 255, 255))
       image_display = True
-      pygame.display.update()
-      pygame.display.flip()
+
       
     pygame.display.update()
     pygame.time.Clock().tick(7)  
