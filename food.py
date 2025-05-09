@@ -8,6 +8,8 @@ food_list = []
 running = True
 food_ate = 0
 
+
+
 #loading, displaying, and adding food to random board squares
 def generate_food(stage):
     display_image = pygame.image.load("snake_food.png")

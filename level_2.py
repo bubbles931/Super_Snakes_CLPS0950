@@ -5,6 +5,7 @@ import snake_icon
 import food
 
 
+
 def main(stage):
     stage.fill(100,100,100)
 
@@ -13,13 +14,14 @@ obstacle_list = []
 running = True
 
 
-def generate_obstacles(stage,board_squares):
+def generate_obstacles(stage,board_squares, num_obstacles):
     display_image = pygame.image.load("obstacle_try2.webp")
     display_image = pygame.transform.scale(display_image, (25, 25))
     if not obstacle_list:
+        obstacle_list.clear()
         #keep running until an open boardsquare is found
-        while len(obstacle_list) < 6:
-            square = board_squares[random.randint(2, 18)][random.randint(2, 18)]
+        while len(obstacle_list) < num_obstacles:
+            square = board_squares[random.randint(2, 17)][random.randint(2, 17)]
             if square not in snake_icon.body_list and square not in food.food_list and square not in obstacle_list:
                 obstacle_list.append(square)
   

@@ -5,6 +5,9 @@ import food
 import level_2
 import level_3
 
+
+
+
 def board():
   #initialize all pygame modules
   pygame.init()
@@ -25,6 +28,7 @@ def board():
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
+  num_obstacles = 0
 
 #main game loop:
   while running:
@@ -88,6 +92,8 @@ def board():
     txt_surface = font.render("Ate: " + str(food.food_ate) + "/" + str(desired_amount), False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
     
+
+
     if food.food_ate == desired_amount and curr_level == "Level 1":
       curr_level = "Level 2"
       food.food_ate = 0
@@ -100,10 +106,13 @@ def board():
       instructions = "Avoid the obstacles and your tail!"
       x = 50
       desired_amount = 1
+      num_obstacles = 6
+      level_2.obstacle_list.clear()
+
     
     if curr_level == "Level 2":
       if image_display == False: 
-        level_2.generate_obstacles(stage, board_squares)
+        level_2.generate_obstacles(stage, board_squares, num_obstacles)
         level_2.obstacle_collison()
         level_2.hit_body()
 
@@ -118,10 +127,12 @@ def board():
       direction = ""  
       instructions = "" #add instructions for level 3
       desired_amount = 1 #add the amount you want
+      num_obstacles = 15
+      
 
     if curr_level == "Level 3":
       if image_display == False: 
-        level_3.test()
+        level_3.set_up(stage,num_obstacles, board_squares)
 
     
     
