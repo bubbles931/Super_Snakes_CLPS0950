@@ -4,9 +4,7 @@ import snake_icon
 import food
 import level_2
 import level_3
-
-
-
+import level_4
 
 def board():
   #initialize all pygame modules
@@ -144,21 +142,35 @@ def board():
       desired_amount = 1 #add the amount you want
       level_2.obstacle_list.clear()
       num_obstacles = 15
-      speed = 13
-
-      
-
+      speed = 15
+ 
     if curr_level == "Level 3":
       if image_display == False: 
         pygame.mixer.music.unpause()
-        level_3.set_up(stage,num_obstacles, board_squares)
-
+        level_3.set_up(stage, num_obstacles, board_squares)
     
-    
-
-    #text that appears when player has won all the levels
     if food.food_ate == desired_amount and curr_level == "Level 3":
-      end_display = True
+      pygame.mixer.music.pause()
+      curr_level = "Level 4"
+      food.food_ate = 0
+      image_display = True
+      movement_rows = 9
+      movement_cols = 9
+      body_y = 8
+      body_x = 9
+      direction = ""  
+      instructions = "" #add instructions for level 4
+      desired_amount = 1 #add the amount you want
+
+    if curr_level == "Level 4":
+      if image_display == False: 
+        pygame.mixer.music.unpause()
+        level_2.hit_body
+        level_4.level_4_logic(head_location, food_location, speed)
+    
+    #text that appears when player has won all the levels
+      if food.food_ate == desired_amount and curr_level == "Level 4":
+        end_display = True
       while end_display:
         for event in pygame.event.get():
           if event.type == pygame.QUIT:
@@ -176,7 +188,7 @@ def board():
 
       
     pygame.display.update()
-    pygame.time.Clock().tick(speed)  
+    pygame.time.Clock().tick(speed) 
     pygame.display.flip()
   
   pygame.display.flip()
