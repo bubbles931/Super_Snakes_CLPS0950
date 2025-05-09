@@ -147,12 +147,18 @@ def board():
     if food.food_ate == desired_amount and curr_level == "Level 3":
       end_display = True
       while end_display:
+        for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+            end_display = False
+            running = False
         display_image_end = pygame.image.load("end_img.jpg")
         display_image_end = pygame.transform.scale(display_image_end, (500,500))
-        font = pygame.font.SysFont('Times New Roman', 30)
-        level_txt_surface = font.render("Congratulations you are the Superior Snake!!", True, (255, 255, 255))
-        if event.type == pygame.QUIT:
-          pygame.quit()
+        stage.blit(display_image_end, (0,0))
+        
+        font = pygame.font.SysFont('Times New Roman', 25)
+        txt_surface = font.render("Congratulations you are the Super Snake!!", True, (0, 0, 0))
+        stage.blit(txt_surface, (25,200))
+        pygame.display.flip()
 
 
       
