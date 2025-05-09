@@ -29,6 +29,7 @@ def board():
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
   num_obstacles = 0
+  speed = 7
 
 #main game loop:
   while running:
@@ -107,7 +108,6 @@ def board():
       x = 50
       desired_amount = 1
       num_obstacles = 6
-      level_2.obstacle_list.clear()
 
     
     if curr_level == "Level 2":
@@ -127,11 +127,15 @@ def board():
       direction = ""  
       instructions = "" #add instructions for level 3
       desired_amount = 1 #add the amount you want
+      level_2.obstacle_list.clear()
       num_obstacles = 15
+      speed = 15
+
       
 
     if curr_level == "Level 3":
       if image_display == False: 
+        
         level_3.set_up(stage,num_obstacles, board_squares)
 
     
@@ -142,7 +146,7 @@ def board():
       print("THEE ENDDDDDD")
       
     pygame.display.update()
-    pygame.time.Clock().tick(7)  
+    pygame.time.Clock().tick(speed)  
     pygame.display.flip()
   
   pygame.display.flip()
