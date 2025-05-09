@@ -3,6 +3,7 @@ import pygame
 import snake_icon
 import food
 import level_2
+import level_3
 
 def board():
   #initialize all pygame modules
@@ -20,7 +21,7 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 10
+  desired_amount = 1
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
@@ -98,7 +99,7 @@ def board():
       direction = ""  
       instructions = "Avoid the obstacles and your tail!"
       x = 50
-      desired_amount = 20
+      desired_amount = 1
     
     if curr_level == "Level 2":
       if image_display == False: 
@@ -116,7 +117,14 @@ def board():
       body_x = 9
       direction = ""  
       instructions = "" #add instructions for level 3
-      desired_amount = __ #add the amount you want
+      desired_amount = 1 #add the amount you want
+
+    if curr_level == "Level 3":
+      if image_display == False: 
+        level_3.test()
+
+    
+    
 
     #text that appears when player has won all the levels
     if food.food_ate == desired_amount and curr_level == "Level 3":
