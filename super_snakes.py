@@ -25,7 +25,7 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 3
+  desired_amount = 1
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
