@@ -25,7 +25,7 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 1
+  desired_amount = 3
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
@@ -34,6 +34,7 @@ def board():
   end_display = False
   music = "game_music.mp3"
   pygame.mixer.music.load(music) 
+  eating_sound = pygame.mixer.Sound("eating.mp3")
 
 
 #main game loop:
@@ -78,7 +79,6 @@ def board():
     snake_icon.body_list.insert(0, square)
     if len(snake_icon.body_list) > snake_icon.body_counter:
       snake_icon.body_list.pop()
-
     #drawing everything in these couple lines
     stage.fill((255, 255, 255))
     board_squares = generating_board(stage, rows, cols)
@@ -95,6 +95,7 @@ def board():
     bool = food.check_collison(stage)
     if bool:
       food.food_ate +=1
+      eating_sound.play()
     font = pygame.font.SysFont('Times New Roman', 15)
     txt_surface = font.render("Ate: " + str(food.food_ate) + "/" + str(desired_amount), False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
