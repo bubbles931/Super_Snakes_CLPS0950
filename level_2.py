@@ -4,7 +4,8 @@ import random
 import snake_icon
 import food
 
-
+pygame.init()
+pygame.mixer.init()
 
 def main(stage):
     stage.fill(100,100,100)
@@ -12,6 +13,7 @@ def main(stage):
 board_squares = None
 obstacle_list = []
 running = True
+game_over_sound = pygame.mixer.Sound("game_over.mp3")
 
 
 def generate_obstacles(stage,board_squares, num_obstacles):
@@ -35,12 +37,18 @@ def generate_obstacles(stage,board_squares, num_obstacles):
 def obstacle_collison():
     head_location = snake_icon.body_list[0]
     if head_location in obstacle_list:
+        pygame.mixer.music.stop()
+        game_over_sound.play()
+        pygame.time.delay(1500)
         pygame.quit()
 
 def hit_body():
     head_location = snake_icon.body_list[0]
     snake_icon.body_list
     if snake_icon.body_list.count(head_location) > 1:
+        pygame.mixer.music.stop()
+        game_over_sound.play()
+        pygame.time.delay(1500)
         pygame.quit()
     
 

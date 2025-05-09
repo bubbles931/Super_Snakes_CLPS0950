@@ -35,6 +35,7 @@ def board():
   music = "game_music.mp3"
   pygame.mixer.music.load(music) 
   eating_sound = pygame.mixer.Sound("eating.mp3")
+  game_over_sound = pygame.mixer.Sound("game_over.mp3")
 
 
 #main game loop:
@@ -86,6 +87,9 @@ def board():
 
     #death barrier
     if movement_cols == 0 or movement_cols == 19 or movement_rows == 0 or movement_rows == 19:
+      pygame.mixer.music.stop()
+      game_over_sound.play()
+      pygame.time.delay(1500)
       break
 
     food.board_squares = board_squares
