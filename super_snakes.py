@@ -24,7 +24,7 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 1
+  desired_amount = 10
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
@@ -106,8 +106,9 @@ def board():
       direction = ""  
       instructions = "Avoid the obstacles and your tail!"
       x = 50
-      desired_amount = 1
+      desired_amount = 20
       num_obstacles = 6
+      speed = 10
 
     
     if curr_level == "Level 2":
