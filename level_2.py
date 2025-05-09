@@ -22,8 +22,10 @@ def generate_obstacles(stage,board_squares, num_obstacles):
         #keep running until an open boardsquare is found
         print(num_obstacles)
         while len(obstacle_list) <= num_obstacles:
-            square = board_squares[random.randint(2, 17)][random.randint(2, 17)]
-            if square not in snake_icon.body_list and square not in food.food_list and square not in obstacle_list:
+            x = random.randint(2, 17)
+            y = random.randint(2, 17)
+            square = board_squares[x][y]
+            if square not in snake_icon.body_list and square not in food.food_list and square not in obstacle_list and x != 9:
                 obstacle_list.append(square)
   
 
