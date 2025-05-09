@@ -24,12 +24,13 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 10
+  desired_amount = 1
   curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
   num_obstacles = 0
   speed = 7
+  end_display = False
 
 #main game loop:
   while running:
@@ -106,7 +107,7 @@ def board():
       direction = ""  
       instructions = "Avoid the obstacles and your tail!"
       x = 50
-      desired_amount = 20
+      desired_amount = 1
       num_obstacles = 6
       speed = 10
 
@@ -130,7 +131,7 @@ def board():
       desired_amount = 1 #add the amount you want
       level_2.obstacle_list.clear()
       num_obstacles = 15
-      speed = 15
+      speed = 13
 
       
 
@@ -144,7 +145,16 @@ def board():
 
     #text that appears when player has won all the levels
     if food.food_ate == desired_amount and curr_level == "Level 3":
-      print("THEE ENDDDDDD")
+      end_display = True
+      while end_display:
+        display_image_end = pygame.image.load("end_img.jpg")
+        display_image_end = pygame.transform.scale(display_image_end, (500,500))
+        font = pygame.font.SysFont('Times New Roman', 30)
+        level_txt_surface = font.render("Congratulations you are the Superior Snake!!", True, (255, 255, 255))
+        if event.type == pygame.QUIT:
+          pygame.quit()
+
+
       
     pygame.display.update()
     pygame.time.Clock().tick(speed)  
