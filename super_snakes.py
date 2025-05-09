@@ -142,7 +142,7 @@ def board():
       desired_amount = 1 #add the amount you want
       level_2.obstacle_list.clear()
       num_obstacles = 15
-      speed = 15
+      speed = 10
  
     if curr_level == "Level 3":
       if image_display == False: 
@@ -160,13 +160,18 @@ def board():
       body_x = 9
       direction = ""  
       instructions = "" #add instructions for level 4
-      desired_amount = 1 #add the amount you want
+      desired_amount = 3 #add the amount you want
 
     if curr_level == "Level 4":
       if image_display == False: 
         pygame.mixer.music.unpause()
-        level_2.hit_body
-        level_4.level_4_logic(head_location, food_location, speed)
+        level_2.hit_body()
+        head_location = snake_icon.body_list[0] if snake_icon.body_list else None
+        food_list = food.food_list if food.food_list else []
+        print ("LVL 4 SPEED WORKING")
+        level_4.level_4_logic(head_location, food_list, speed)
+        speed = level_4.level_4_logic(head_location, food_list, speed)
+
     
     #text that appears when player has won all the levels
       if food.food_ate == desired_amount and curr_level == "Level 4":
