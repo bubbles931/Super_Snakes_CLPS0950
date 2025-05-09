@@ -102,6 +102,7 @@ def board():
 
 
     if food.food_ate == desired_amount and curr_level == "Level 1":
+      pygame.mixer.music.pause()
       curr_level = "Level 2"
       food.food_ate = 0
       image_display = True
@@ -122,8 +123,10 @@ def board():
         level_2.generate_obstacles(stage, board_squares, num_obstacles)
         level_2.obstacle_collison()
         level_2.hit_body()
+        pygame.mixer.music.unpause()
 
     if food.food_ate == desired_amount and curr_level == "Level 2":
+      pygame.mixer.music.pause()
       curr_level = "Level 3"
       food.food_ate = 0
       image_display = True
@@ -142,7 +145,7 @@ def board():
 
     if curr_level == "Level 3":
       if image_display == False: 
-        
+        pygame.mixer.music.unpause()
         level_3.set_up(stage,num_obstacles, board_squares)
 
     
