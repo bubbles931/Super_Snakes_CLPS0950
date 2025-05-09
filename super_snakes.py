@@ -11,6 +11,7 @@ import level_3
 def board():
   #initialize all pygame modules
   pygame.init()
+  pygame.mixer.init()
   #creates display window with parameters
   stage = pygame.display.set_mode((500,500))
   pygame.display.set_caption("Super Snakes")
@@ -31,6 +32,9 @@ def board():
   num_obstacles = 0
   speed = 7
   end_display = False
+  music = "game_music.mp3"
+  pygame.mixer.music.load(music) 
+
 
 #main game loop:
   while running:
@@ -44,6 +48,7 @@ def board():
           if event.key == pygame.K_RIGHT and direction != 'L' and direction != 'U' and direction != 'D':
               direction = 'R'
               image_display = False
+              pygame.mixer.music.play(-1) 
       font = pygame.font.SysFont('Times New Roman', 30)
       level_txt_surface = font.render(curr_level, True, (255, 255, 255))
       instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
