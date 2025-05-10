@@ -24,7 +24,7 @@ def board():
   running = True
   image_display = True 
   desired_amount = 1
-  curr_level = "Level 1"
+  curr_level = "Level 4"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
   num_obstacles = 0
@@ -168,7 +168,6 @@ def board():
         level_2.hit_body()
         head_location = snake_icon.body_list[0] if snake_icon.body_list else None
         food_list = food.food_list if food.food_list else []
-        print ("LVL 4 SPEED WORKING")
         level_4.level_4_logic(head_location, food_list, speed)
         speed = level_4.level_4_logic(head_location, food_list, speed)
 
