@@ -24,7 +24,7 @@ def board():
   running = True
   image_display = True 
   desired_amount = 1
-  curr_level = "Level 4"
+  curr_level = "Level 1"
   instructions = "Eat " + str(desired_amount) + " food to level up!"
   x = 100
   num_obstacles = 0
@@ -34,6 +34,7 @@ def board():
   pygame.mixer.music.load(music) 
   eating_sound = pygame.mixer.Sound("eating.mp3")
   game_over_sound = pygame.mixer.Sound("game_over.mp3")
+  desired_speed = 0
 
 
 #main game loop:
@@ -161,16 +162,26 @@ def board():
       direction = ""  
       instructions = "" #add instructions for level 4
       desired_amount = 3 #add the amount you want
+      speed = 10
+      desired_speed = 15
 
     if curr_level == "Level 4":
+
       if image_display == False: 
         pygame.mixer.music.unpause()
         level_2.hit_body()
-        head_location = snake_icon.body_list[0] if snake_icon.body_list else None
-        food_list = food.food_list if food.food_list else []
-        level_4.level_4_logic(head_location, food_list, speed)
-        speed = level_4.level_4_logic(head_location, food_list, speed)
+        #initial_speed = speed
+        if bool == True:
+          while speed != desired_speed:
+            speed += 1
+            print(str(speed) + 'speed')
+          if speed == desired_speed:
+            print('test_run')
+            desired_speed += 20
+          print(str(desired_speed) + 'desired speed')
 
+        #pygame.time.wait(1000)
+        #speed = initial_speed
     
     #text that appears when player has won all the levels
       if food.food_ate == desired_amount and curr_level == "Level 4":

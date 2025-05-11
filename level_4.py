@@ -2,19 +2,13 @@ import pygame
 import snake_icon
 import food
 
-food.food_list 
 running = True
+desired_speed = 20
 
-def level_4_logic(head_location, food_list, speed):
-    head_location = snake_icon.body_list[0]
-    for food_location in food_list:
-        print("Checking:", head_location, "vs food list", food_list, "vs food loc", food_location)
-        if head_location == food_list:
-            print ('food ate')
-            speed = 20
-            print ("20")
-            pygame.time.wait(1000)
-            speed = 1
-            print ("1")
-    
-        return speed
+def level_4_logic(stage, speed) -> int:
+    initial_speed = speed
+    bool = food.check_collison(stage)
+    if bool:
+        while speed != desired_speed:
+            speed+=1
+        speed = initial_speed
