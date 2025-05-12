@@ -172,31 +172,54 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
-      instructions = "Bonus Level... MWahHAHAHAHA" #add instructions for level 4
-      desired_amount = 3 #add the amount you want
-      speed = 10
+      instructions = "" #add instructions for level 4
+      desired_amount = 2 #add the amount you want
+      speed = 7
       desired_speed = 15
 
     if curr_level == "Level 4":
-
-      if image_display == False: 
+      if image_display == False:           
         pygame.mixer.music.unpause()
-        level_2.hit_body()
         #initial_speed = speed
         if bool == True:
           while speed != desired_speed:
             speed += 1
-            print(str(speed) + 'speed')
           if speed == desired_speed:
-            print('test_run')
-            desired_speed += 20
+            desired_speed += 10
           print(str(desired_speed) + 'desired speed')
+      
+    if food.food_ate == desired_amount and curr_level == "Level 4":
+      pygame.mixer.music.pause()
+      curr_level = "Level 5"
+      food.food_ate = 0
+      image_display = True
+      movement_rows = 9
+      movement_cols = 9
+      body_y = 8
+      body_x = 9
+      direction = ""  
+      instructions = "" #add instructions for level 4
+      desired_amount = 3 #add the amount you want
+      speed = 7
+      desired_speed = 15
+      level_2.obstacle_list.clear()
+      num_obstacles = 15
 
-        #pygame.time.wait(1000)
-        #speed = initial_speed
+    if curr_level == "Level 5":
+      if image_display == False:           
+        level_3.set_up(stage,num_obstacles, board_squares)
+        pygame.mixer.music.unpause()
+        #initial_speed = speed
+        if bool == True:
+          while speed != desired_speed:
+            speed += 1
+          if speed == desired_speed:
+            desired_speed += 5
+          print(str(desired_speed) + 'desired speed')
+    
     
     #text that appears when player has won all the levels
-      if food.food_ate == desired_amount and curr_level == "Level 4":
+      if food.food_ate == desired_amount and curr_level == "Level 5":
         end_display = True
       while end_display:
         for event in pygame.event.get():
