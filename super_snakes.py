@@ -23,9 +23,10 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 1
+  desired_amount = 5
   curr_level = "Level 1"
-  instructions = "Eat " + str(desired_amount) + " food to level up!"
+  pre_instructions = f"Eat {desired_amount} food\nto level up\n and evolve to a Super Snake!"
+  instructions = pre_instructions.split('\n')  
   x = 100
   num_obstacles = 0
   speed = 7
@@ -53,13 +54,19 @@ def board():
       font = pygame.font.SysFont('Times New Roman', 30)
       level_txt_surface = font.render(curr_level, True, (255, 255, 255))
       instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
-      instruction_txt_surface_levels = font.render(instructions, False, (255, 255, 255))
+      #instruction_txt_surface_levels = font.render(instructions, False, (255, 255, 255))
 
     #showing image      
       stage.blit(display_image, (0,0))
-      stage.blit(level_txt_surface, (190,100))
+      stage.blit(level_txt_surface, (193,100))
       stage.blit(instruction_txt_surface, (75,150))
-      stage.blit(instruction_txt_surface_levels, (x,300))
+      #stage.blit(instruction_txt_surface_levels, (x,300))
+      for i, line in enumerate(instructions):
+        text_surface = font.render(line, True, (255, 255, 0))
+        #text_surface = font.render(line, True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=(236, 280 + i * 40))  # Adjust vertical center per line
+        stage.blit(text_surface, text_rect)
+        #stage.blit(text_surface, (175, 275 + i * 30))
       pygame.display.flip()
 
       #updating stage to display board squares and placing snake in assigned start position 
