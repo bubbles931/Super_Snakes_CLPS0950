@@ -4,7 +4,6 @@ import snake_icon
 import food
 import level_2
 import level_3
-import level_4
 
 def board():
   #initialize all pygame modules
@@ -23,10 +22,11 @@ def board():
   direction = ""  
   running = True
   image_display = True 
-  desired_amount = 5
+  desired_amount = 1
   curr_level = "Level 1"
   pre_instructions = f"Eat {desired_amount} food\nto level up\n and evolve to a Super Snake!"
-  instructions = pre_instructions.split('\n')  
+  long_instructions = pre_instructions.split('\n')
+  instructions = "Avoid the obstacles and your tail!"
   x = 100
   num_obstacles = 0
   speed = 7
@@ -54,19 +54,22 @@ def board():
       font = pygame.font.SysFont('Times New Roman', 30)
       level_txt_surface = font.render(curr_level, True, (255, 255, 255))
       instruction_txt_surface = font.render("To Start: Press your right key", False, (255, 255, 255))
-      #instruction_txt_surface_levels = font.render(instructions, False, (255, 255, 255))
+      instruction_txt_surface_levels = font.render(instructions, False, (255, 255, 0))
 
     #showing image      
       stage.blit(display_image, (0,0))
       stage.blit(level_txt_surface, (193,100))
       stage.blit(instruction_txt_surface, (75,150))
-      #stage.blit(instruction_txt_surface_levels, (x,300))
-      for i, line in enumerate(instructions):
-        text_surface = font.render(line, True, (255, 255, 0))
-        #text_surface = font.render(line, True, (255, 255, 255))
-        text_rect = text_surface.get_rect(center=(236, 280 + i * 40))  # Adjust vertical center per line
-        stage.blit(text_surface, text_rect)
+      if curr_level == "Level 1" or curr_level == "Level 3":
+        for i, line in enumerate(long_instructions):
+          text_surface = font.render(line, True, (255, 255, 0))
+          #text_surface = font.render(line, True, (255, 255, 255))
+          text_rect = text_surface.get_rect(center=(236, 280 + i * 40))  # Adjust vertical center per line
+          stage.blit(text_surface, text_rect)
         #stage.blit(text_surface, (175, 275 + i * 30))
+      else:
+        stage.blit(instruction_txt_surface_levels, (x,300))
+
       pygame.display.flip()
 
       #updating stage to display board squares and placing snake in assigned start position 
@@ -122,7 +125,6 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
-      instructions = "Avoid the obstacles and your tail!"
       x = 50
       desired_amount = 1
       num_obstacles = 6
@@ -145,8 +147,11 @@ def board():
       movement_cols = 9
       body_y = 8
       body_x = 9
-      direction = ""  
-      instructions = "" #add instructions for level 3
+      direction = "" 
+      #pre_instructions = f"Eat {desired_amount} food\nto level up\n and evolve to a Super Snake!"
+      #long_instructions = pre_instructions.split('\n') 
+      pre_instructions = f"Keep avoiding your tail\n and even more obstacles!" #add instructions for level 3
+      long_instructions = pre_instructions.split('\n') 
       desired_amount = 1 #add the amount you want
       level_2.obstacle_list.clear()
       num_obstacles = 15
@@ -167,7 +172,7 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
-      instructions = "" #add instructions for level 4
+      instructions = "Bonus Level... MWahHAHAHAHA" #add instructions for level 4
       desired_amount = 3 #add the amount you want
       speed = 10
       desired_speed = 15
