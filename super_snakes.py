@@ -39,7 +39,6 @@ def board():
   game_over_sound = pygame.mixer.Sound("game_over.mp3")
   desired_speed = 0
 
-
 #main game loop:
   while running:
     #game board display
@@ -101,7 +100,7 @@ def board():
     if movement_cols == 0 or movement_cols == 19 or movement_rows == 0 or movement_rows == 19:
       pygame.mixer.music.stop()
       game_over_sound.play()
-      pygame.time.delay(1500)
+      pygame.time.delay(1000)
       break
 
     food.board_squares = board_squares
@@ -116,7 +115,6 @@ def board():
     txt_surface = font.render("Ate: " + str(food.food_ate) + "/" + str(desired_amount), False, (255, 255, 255))
     stage.blit(txt_surface, (75,0))
     
-
 #Level up to level 2
     if food.food_ate == desired_amount and curr_level == "Level 1":
       pygame.mixer.music.pause()
@@ -132,7 +130,6 @@ def board():
       desired_amount = 1
       num_obstacles = 6
       speed = 10
-
     
     if curr_level == "Level 2":
       if image_display == False: 
@@ -179,7 +176,7 @@ def board():
       direction = ""  
       pre_instructions = f"Nothing special...\n just eat the food ;) ★" #add instructions for level 3
       long_instructions = pre_instructions.split('\n') 
-      desired_amount = 2 #add the amount you want
+      desired_amount = 10 #add the amount you want
       speed = 7
       desired_speed = 15
 
@@ -192,7 +189,6 @@ def board():
             speed += 1
           if speed == desired_speed:
             desired_speed += 5
-          print(str(desired_speed) + 'desired speed')
       
     #Level up to level 5
     if food.food_ate == desired_amount and curr_level == "Level 4":
@@ -208,7 +204,7 @@ def board():
       pre_instructions = f"This is the final test\n good luck ssssssssssssss" #add instructions for level 3
       long_instructions = pre_instructions.split('\n') 
       desired_amount = 3 #add the amount you want
-      speed = 7
+      speed = 10
       desired_speed = 15
       level_2.obstacle_list.clear()
       num_obstacles = 7
@@ -223,8 +219,6 @@ def board():
             speed += 1
           if speed == desired_speed:
             desired_speed += 2
-          print(str(desired_speed) + 'desired speed')
-    
     
     #text/image that appears when player has won all the levels
       if food.food_ate == desired_amount and curr_level == "Level 5":
@@ -237,14 +231,12 @@ def board():
         display_image_end = pygame.image.load("end_img.jpg")
         display_image_end = pygame.transform.scale(display_image_end, (500,500))
         stage.blit(display_image_end, (0,0))
-        
+        t
         font = pygame.font.SysFont('Times New Roman', 25)
         txt_surface = font.render("Congratulations you are the Super Snake!!", True, (0, 0, 0))
         stage.blit(txt_surface, (25,200))
         pygame.display.flip()
 
-
-      
     pygame.display.update()
     pygame.time.Clock().tick(speed) 
     pygame.display.flip()
@@ -272,7 +264,6 @@ def generating_board(stage, rows, cols):
             squares_row.append(square)
       board_squares.append(squares_row)
   return board_squares
-
 
 #calling function
 board()

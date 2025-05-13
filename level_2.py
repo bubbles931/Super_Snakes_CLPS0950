@@ -7,12 +7,7 @@ import food
 pygame.init()
 pygame.mixer.init()
 
-def main(stage):
-    stage.fill(100,100,100)
-
-board_squares = None
 obstacle_list = []
-running = True
 game_over_sound = pygame.mixer.Sound("game_over.mp3")
 
 #function to generate obstacles randomly
