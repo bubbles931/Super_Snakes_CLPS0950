@@ -24,7 +24,7 @@ def board():
   running = True
   image_display = True 
   #initialize variables for level 1
-  desired_amount = 1
+  desired_amount = 5
   curr_level = "Level 1"
   pre_instructions = f"Eat {desired_amount} food\nto level up\n and evolve to a Super Snake!"
   long_instructions = pre_instructions.split('\n')
@@ -129,7 +129,6 @@ def board():
       x = 50
       desired_amount = 4
       num_obstacles = 6
-      speed = 10
     
     if curr_level == "Level 2":
       if image_display == False: 
@@ -176,7 +175,7 @@ def board():
       long_instructions = pre_instructions.split('\n') 
       desired_amount = 3 #add the amount you want
       speed = 7
-      desired_speed = 15
+      desired_speed = 11
 
     if curr_level == "Level 4":
       if image_display == False:           
@@ -202,7 +201,7 @@ def board():
       pre_instructions = f"This is the final test\n good luck ssssssssssssss" #add instructions for level 3
       long_instructions = pre_instructions.split('\n') 
       desired_amount = 3 #add the amount you want
-      speed = 10
+      speed = 7
       desired_speed = 15
       level_2.obstacle_list.clear()
       num_obstacles = 7
