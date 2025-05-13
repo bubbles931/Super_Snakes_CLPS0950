@@ -127,7 +127,7 @@ def board():
       body_x = 9
       direction = ""  
       x = 50
-      desired_amount = 1
+      desired_amount = 4
       num_obstacles = 6
       speed = 10
     
@@ -151,7 +151,7 @@ def board():
       #long_instructions = pre_instructions.split('\n') 
       pre_instructions = f"Keep avoiding your tail\n and even more obstacles!" #add instructions for level 3
       long_instructions = pre_instructions.split('\n') 
-      desired_amount = 1 #add the amount you want
+      desired_amount = 4 #add the amount you want
       level_2.obstacle_list.clear()
       num_obstacles = 15
       speed = 10
@@ -174,7 +174,7 @@ def board():
       direction = ""  
       pre_instructions = f"Nothing special...\n just eat the food ;) ★" #add instructions for level 3
       long_instructions = pre_instructions.split('\n') 
-      desired_amount = 10 #add the amount you want
+      desired_amount = 3 #add the amount you want
       speed = 7
       desired_speed = 15
 
