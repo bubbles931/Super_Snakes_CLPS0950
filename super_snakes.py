@@ -63,7 +63,7 @@ def board():
       stage.blit(display_image, (0,0))
       stage.blit(level_txt_surface, (193,100))
       stage.blit(instruction_txt_surface, (75,150))
-      if curr_level == "Level 1" or curr_level == "Level 3":
+      if curr_level != "Level 2":
         for i, line in enumerate(long_instructions):
           text_surface = font.render(line, True, (255, 255, 0))
           #text_surface = font.render(line, True, (255, 255, 255))
@@ -177,7 +177,8 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
-      instructions = "" #add instructions for level 4
+      pre_instructions = f"Nothing special...\n just eat the food ;) ★" #add instructions for level 3
+      long_instructions = pre_instructions.split('\n') 
       desired_amount = 2 #add the amount you want
       speed = 7
       desired_speed = 15
@@ -204,7 +205,8 @@ def board():
       body_y = 8
       body_x = 9
       direction = ""  
-      instructions = "" #add instructions for level 4
+      pre_instructions = f"This is the final test\n good luck ssssssssssssss" #add instructions for level 3
+      long_instructions = pre_instructions.split('\n') 
       desired_amount = 3 #add the amount you want
       speed = 7
       desired_speed = 15
