@@ -229,7 +229,6 @@ def board():
         display_image_end = pygame.image.load("end_img.jpg")
         display_image_end = pygame.transform.scale(display_image_end, (500,500))
         stage.blit(display_image_end, (0,0))
-        t
         font = pygame.font.SysFont('Times New Roman', 25)
         txt_surface = font.render("Congratulations you are the Super Snake!!", True, (0, 0, 0))
         stage.blit(txt_surface, (25,200))
