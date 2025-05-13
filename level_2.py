@@ -17,7 +17,6 @@ def generate_obstacles(stage,board_squares, num_obstacles):
     if not obstacle_list:
         obstacle_list.clear()
         #keep running until an open boardsquare is found
-        print(num_obstacles)
         while len(obstacle_list) <= num_obstacles:
             x = random.randint(2, 17)
             y = random.randint(2, 17)
