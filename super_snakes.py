@@ -191,7 +191,7 @@ def board():
           while speed != desired_speed:
             speed += 1
           if speed == desired_speed:
-            desired_speed += 10
+            desired_speed += 5
           print(str(desired_speed) + 'desired speed')
       
     #Level up to level 5
@@ -211,7 +211,7 @@ def board():
       speed = 7
       desired_speed = 15
       level_2.obstacle_list.clear()
-      num_obstacles = 15
+      num_obstacles = 7
 
     if curr_level == "Level 5":
       if image_display == False:           
@@ -222,7 +222,7 @@ def board():
           while speed != desired_speed:
             speed += 1
           if speed == desired_speed:
-            desired_speed += 5
+            desired_speed += 2
           print(str(desired_speed) + 'desired speed')
     
     
