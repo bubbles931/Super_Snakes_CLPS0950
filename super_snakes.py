@@ -8,6 +8,7 @@ import level_3
 def board():
   #initialize all pygame modules
   pygame.init()
+  #initialize mixer for music and sound effects
   pygame.mixer.init()
   #creates display window with parameters
   stage = pygame.display.set_mode((500,500))
@@ -22,6 +23,7 @@ def board():
   direction = ""  
   running = True
   image_display = True 
+  #initialize variables for level 1
   desired_amount = 1
   curr_level = "Level 1"
   pre_instructions = f"Eat {desired_amount} food\nto level up\n and evolve to a Super Snake!"
@@ -40,6 +42,7 @@ def board():
 
 #main game loop:
   while running:
+    #game board display
     while image_display:
       display_image = pygame.image.load("initial_board_screenshot.png")
       display_image = pygame.transform.scale(display_image, (500,500))
@@ -114,7 +117,7 @@ def board():
     stage.blit(txt_surface, (75,0))
     
 
-
+#Level up to level 2
     if food.food_ate == desired_amount and curr_level == "Level 1":
       pygame.mixer.music.pause()
       curr_level = "Level 2"
@@ -137,7 +140,8 @@ def board():
         level_2.obstacle_collison()
         level_2.hit_body()
         pygame.mixer.music.unpause()
-
+ 
+  #Level up to level 3
     if food.food_ate == desired_amount and curr_level == "Level 2":
       pygame.mixer.music.pause()
       curr_level = "Level 3"
@@ -162,6 +166,7 @@ def board():
         pygame.mixer.music.unpause()
         level_3.set_up(stage, num_obstacles, board_squares)
     
+    #Level up to level 4
     if food.food_ate == desired_amount and curr_level == "Level 3":
       pygame.mixer.music.pause()
       curr_level = "Level 4"
@@ -188,6 +193,7 @@ def board():
             desired_speed += 10
           print(str(desired_speed) + 'desired speed')
       
+    #Level up to level 5
     if food.food_ate == desired_amount and curr_level == "Level 4":
       pygame.mixer.music.pause()
       curr_level = "Level 5"
@@ -218,7 +224,7 @@ def board():
           print(str(desired_speed) + 'desired speed')
     
     
-    #text that appears when player has won all the levels
+    #text/image that appears when player has won all the levels
       if food.food_ate == desired_amount and curr_level == "Level 5":
         end_display = True
       while end_display:

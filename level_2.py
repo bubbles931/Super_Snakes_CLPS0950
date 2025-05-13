@@ -15,7 +15,7 @@ obstacle_list = []
 running = True
 game_over_sound = pygame.mixer.Sound("game_over.mp3")
 
-
+#function to generate obstacles randomly
 def generate_obstacles(stage,board_squares, num_obstacles):
     display_image = pygame.image.load("obstacle_try2.webp")
     display_image = pygame.transform.scale(display_image, (25, 25))
@@ -34,6 +34,7 @@ def generate_obstacles(stage,board_squares, num_obstacles):
     for square in obstacle_list:
         stage.blit(display_image, square.topleft)
 
+#when snake hits obstacles game over
 def obstacle_collison():
     head_location = snake_icon.body_list[0]
     if head_location in obstacle_list:
@@ -42,6 +43,7 @@ def obstacle_collison():
         pygame.time.delay(1500)
         pygame.quit()
 
+#when snake hits body game over
 def hit_body():
     head_location = snake_icon.body_list[0]
     snake_icon.body_list
